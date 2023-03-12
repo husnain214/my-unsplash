@@ -1,0 +1,8 @@
+POST http://localhost:3003/api/images
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiaHVzbmFpbmRicyIsImlkIjoiNjQwZGE0MGVmMTVhODkwZTQ2NjcwZjZmIiwiaWF0IjoxNjc4NjE1NTc1fQ.C4l7pVMuqDOoz-62o2ZI2qH6sYA9Blud3_8cViw1sTQ
+Content-Type: application/json
+
+{
+  "url": "https://images.pexels.com/photos/11025228/pexels-photo-11025228.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+  "label": "Person holding a cup on sauce"
+}
