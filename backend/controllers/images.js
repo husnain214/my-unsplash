@@ -46,13 +46,4 @@ imagesRouter.get('/', userExtractor, async (request, response) => {
   response.json(images)
 })
 
-imagesRouter.put('/:id', async (request, response) => {
-  const id = request.params.id
-
-  const image = await Image.findById(id)
-  
-  const updatedImage = await Image.findByIdAndUpdate(id, image, { updated: true })
-  response.json(updatedImage)
-})
-
 module.exports = imagesRouter

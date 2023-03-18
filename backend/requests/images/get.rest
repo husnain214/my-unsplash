@@ -1,0 +1,3 @@
+GET http://localhost:3003/api/images
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiaHVzbmFpbmRicyIsImlkIjoiNjQwZGE0MGVmMTVhODkwZTQ2NjcwZjZmIiwiaWF0IjoxNjc5MTM1MDc5fQ.q87zZEFYk5L9SxLG7YP2v80DdmLFhTvU8gYTUQHFyew
+Content-Type: application/json
