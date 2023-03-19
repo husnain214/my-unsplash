@@ -29,9 +29,12 @@ input[type='checkbox']:checked {
 form button {
   padding: .5em 0;
   border-radius: 5px;
+}
+
+form button, a {
   transition: opacity 200ms;
 }
 
-form button:where(:focus, :hover) {
+:where(form button, a):where(:focus, :hover) {
   opacity: .6;
 }
