@@ -3,8 +3,10 @@
 /* ------------------- */
 
 button {
+  all: unset;
   cursor: pointer;
   border: none;
+  text-align: center;
 }
 
 /* Box sizing rules */
