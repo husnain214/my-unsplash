@@ -1,0 +1,45 @@
+main {
+  grid-template-columns: repeat(3, 1fr);
+  font-family: var(--ff-secondary);
+}
+
+article { 
+  border-radius: 1rem; 
+  position: relative;
+}
+
+article > * { border-radius: inherit; }
+
+article img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.image-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: hsl(0 0% 0% / 0.38);
+  visibility: hidden;
+  opacity: 0;
+}
+
+.image-overlay > * { margin: 1em; }
+
+article:hover .image-overlay {
+  visibility: visible;
+  opacity: 1;
+}
+
+article .delete-btn { 
+  border: 1px solid hsl( var(--clr-accent-200) );
+  padding: .4em 1.1em;
+  border-radius: 2.375rem;
+}
+
+article .delete-btn:where(:hover, :focus, :focus-visible) {
+  background-color: hsl( var(--clr-accent-200) );
+  color: hsl( var(--clr-secondary-100) );
+}
+
+

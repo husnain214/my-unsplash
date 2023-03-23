@@ -9,11 +9,14 @@ button {
   text-align: center;
 }
 
+span { display: block; }
+
 /* Box sizing rules */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
+  transition: all 200ms;
 }
 
 /* Remove default margin */
@@ -50,6 +53,8 @@ body {
   line-height: 1.5;
 }
 
+a[class] { text-decoration: none; }
+
 /* A elements that don't have a class get default styles */
 a:not([class]) {
   text-decoration-skip-ink: auto;
@@ -68,6 +73,12 @@ button,
 textarea,
 select {
   font: inherit;
+  transition: inherit;
+}
+
+:where(input, button, a):where(:focus, :focus-visible) {
+  outline: 2px dashed transparent;
+  outline-offset: 5px;
 }
 
 /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */

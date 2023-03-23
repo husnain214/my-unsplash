@@ -1,7 +1,7 @@
 import parkRainImage from '../images/park-in-rain.jpg'
 import './Homepage.css'
-import SignupForm from './SignupForm'
-import LoginForm from './LoginForm'
+// import SignupForm from './SignupForm'
+// import LoginForm from './LoginForm'
 
 const Login = () => {
   return (
@@ -18,7 +18,6 @@ const Login = () => {
         </aside>
 
         <article className='grid justify-items-center align-content-center' style={{ gap: '2em' }}>
-          <LoginForm />
         </article>
       </main>
     </>

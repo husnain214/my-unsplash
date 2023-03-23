@@ -48,7 +48,7 @@ const SignupForm = () => {
           type='submit' 
           name='submit-btn' 
           id='submit-btn' 
-          className='bg-accent-200 text-secondary-100 fs-400 fw-400'>Sign up</button>
+          className='cta-btn bg-accent-200 text-secondary-100 fs-400 fw-400'>Sign up</button>
       </form>
 
       <footer className='text-secondary-200 fs-300 fw-500 flex'>

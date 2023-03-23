@@ -16,6 +16,7 @@
 
   --clr-accent-100: 14 49% 47%;
   --clr-accent-200: 0 79% 63%;
+  --clr-accent-300: 144 49% 47%;
 
   /* font-families */
 
@@ -102,6 +103,7 @@
 .bg-secondary-300 { background-color: hsl( var(--clr-secondary-300) ); }
 .bg-accent-100 { background-color: hsl( var(--clr-accent-100) ); }
 .bg-accent-200 { background-color: hsl( var(--clr-accent-200) ); }
+.bg-accent-300 { background-color: hsl( var(--clr-accent-300) / 1); }
 
 .text-primary { color: hsl( var(--clr-primary) ); }
 .text-secondary-100 { color: hsl( var(--clr-secondary-100) ); }
