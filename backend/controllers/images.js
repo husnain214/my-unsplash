@@ -42,7 +42,7 @@ imagesRouter.delete('/:id', userExtractor, async (request, response) => {
 imagesRouter.get('/', userExtractor, async (request, response) => {
   const user = request.user
 
-  const images = await Image.find({ user }).populate('user', {username: 1, name: 1})
+  const images = await Image.find({ user }).populate('user', {email: 1, name: 1})
   response.json(images)
 })
 

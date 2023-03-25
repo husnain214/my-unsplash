@@ -1,6 +1,6 @@
 const Image = () => {
   return (
-    <article>
+    <article tabIndex='0'>
       <img src='https://images.pexels.com/photos/9902397/pexels-photo-9902397.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' alt='' />
       
       <div className='image-overlay grid align-content-sb'>

@@ -15,7 +15,7 @@ describe('there are no users in the database', () => {
 
     const newUser = {
       name: 'Saad',
-      username: 'saadheema',
+      email: 'wqqe@gmail.com',
       password: 'doraemon'
     }
   
@@ -30,7 +30,7 @@ describe('there are no users in the database', () => {
     expect(usersAtEnd).toHaveLength(usersAtStart.length + 1)
   })
 
-  test('creation fails if username or password is missing', async () => {
+  test('creation fails if email or password is missing', async () => {
     const usersAtStart = await User.find({})
 
     const newUser_1 = {
@@ -39,7 +39,7 @@ describe('there are no users in the database', () => {
     }
 
     const newUser_2 = {
-      username: 'root',
+      email: 'wqqe@gmail.com',
       name: 'Superuser'
     }
 
@@ -55,8 +55,8 @@ describe('there are no users in the database', () => {
       .expect(400)
       .expect('Content-Type', /application\/json/)
       
-    expect(result_1.body.error).toContain('username and password are required')
-    expect(result_2.body.error).toContain('username and password are required')
+    expect(result_1.body.error).toContain('email and password are required')
+    expect(result_2.body.error).toContain('email and password are required')
 
     const usersAtEnd = await User.find({})
     expect(usersAtEnd).toEqual(usersAtStart)
@@ -66,14 +66,14 @@ describe('there are no users in the database', () => {
 describe('there are some users in the database', () => {
   beforeEach(async () => { 
     const passwordHash = await bcrypt.hash('doraemon', 10)
-    const user = new User({ name: 'Saad Atif', username: 'saadcheema', passwordHash })
+    const user = new User({ name: 'Saad Atif', email: 'saadcheema@gmail.com', passwordHash })
 
     await user.save()
   })
 
   test('users can log in with valid credentials', async () => {
     const loggingUser = {
-      username: 'saadcheema',
+      email: 'saadcheema@gmail.com',
       password: 'doraemon'
     }
 
@@ -84,11 +84,11 @@ describe('there are some users in the database', () => {
       .expect('Content-Type', /application\/json/)
   })
 
-  test('creation fails with proper statuscode and message if username already taken', async () => {
+  test('creation fails with proper status code and message if email already taken', async () => {
     const usersAtStart = await User.find({})
 
     const newUser = {
-      username: 'saadcheema',
+      email: 'saadcheema@gmail.com',
       name: 'Husnain Zahid',
       password: 'husnain123'
     }
@@ -99,17 +99,17 @@ describe('there are some users in the database', () => {
       .expect(400)
       .expect('Content-Type', /application\/json/)
 
-    expect(result.body.error).toContain('username must be unique')
+    expect(result.body.error).toContain('email must be unique')
 
     const usersAtEnd = await User.find({})
     expect(usersAtEnd).toEqual(usersAtStart)
   })
 
-  test('creation succeeds with a fresh username', async () => {  
+  test('creation succeeds with a fresh email', async () => {  
     const usersAtStart = await User.find({})
   
     const newUser = {
-      username: 'husnaindbs',
+      email: 'garageman@gmail.com',
       name: 'Husnain Zahid',
       password: 'boom',
     }
@@ -123,8 +123,8 @@ describe('there are some users in the database', () => {
     const usersAtEnd = await User.find({})
     expect(usersAtEnd).toHaveLength(usersAtStart.length + 1)
   
-    const usernames = usersAtEnd.map(u => u.username)
-    expect(usernames).toContain(newUser.username)
+    const emails = usersAtEnd.map(u => u.email)
+    expect(emails).toContain(newUser.email)
   })
 })
 

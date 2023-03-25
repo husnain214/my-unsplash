@@ -1,17 +1,23 @@
 :focus-visible {
-  outline: 2px dashed hsl( var(--clr-accent-200) );
+  outline-color: hsl( var(--clr-accent-200) );
 }
 
 main.grid {
-  --minimum-size: min(10rem, 100%);
-  grid-template-columns: repeat(auto-fit, minmax( var(--minimum-size), 1fr));
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 100dvh;
 }
 
 @media (max-width: 60em) {
-  main.grid > * { grid-area: 1 / 2 / 1 / 2; }
+  main.grid { grid-template-rows: auto; gap: 0; }
+  main.grid > * { grid-area: 1 / -1 / 1 / -1; } 
+
+  .form-features { align-items: flex-start; flex-direction: column; }
 }
 
-aside { position: relative; }
+aside { 
+  position: relative;
+  z-index: 0;
+}
 
 aside::before {
   content: '';
@@ -24,31 +30,36 @@ aside::before {
 .decor-image {
   z-index: 1;
   object-fit: cover;
-  max-height: 100vh;
   width: 100%;
   height: 100%;
 }
 
-form.grid {
-  padding: 2em;
+.form-container {
+  margin: 2em;
   width: min(30rem, 100% - 2rem);
   margin-inline: auto; 
-  border-radius: 5px;
+  z-index: 1;
 }
 
-.input-wrapper input {
+form.grid { 
+  border-radius: 5px; 
+  padding: 1em;
+}
+
+form .input-text {
   padding: .5em 1em;
   border: 2px solid hsl( var(--clr-secondary-200) );
   outline: transparent;
 
-  transition: all 200ms;
+  transition: all 150ms;
 }
 
-.input-wrapper input:where(:hover, :focus, :focus-visible) {
+form .input-text:where(:hover, :focus-visible) {
   border-color: hsl( var(--clr-primary) );
+  outline-color: transparent;
 }
 
-input[type='checkbox']:checked {
+form input[type='checkbox']:checked {
   accent-color: hsl( var(--clr-accent-200) );
 }
 
@@ -59,10 +70,4 @@ form .cta-btn {
 
 footer button, .remember ~ button { border-bottom: 1px solid hsl( var(--clr-accent-200) ); }
 
-main button {
-  transition: opacity 200ms;
-}
-
-main button:where(:focus, :hover) {
-  opacity: .6;
-}
+main button { transition: opacity 150ms; }

@@ -2,12 +2,24 @@
 /* Reset               */
 /* ------------------- */
 
+:focus-visible {
+  outline-width: 2px;
+  outline-offset: 5px;
+  outline-style: dashed;
+}
+
 button {
   all: unset;
+  line-height: 1;
+  outline-offset: 5;
+  text-align: center;
   cursor: pointer;
   border: none;
   text-align: center;
 }
+
+button:hover { opacity: .6; }
+button:focus-visible { outline-style: solid; }
 
 span { display: block; }
 
@@ -16,7 +28,6 @@ span { display: block; }
 *::before,
 *::after {
   box-sizing: border-box;
-  transition: all 200ms;
 }
 
 /* Remove default margin */
@@ -74,11 +85,6 @@ textarea,
 select {
   font: inherit;
   transition: inherit;
-}
-
-:where(input, button, a):where(:focus, :focus-visible) {
-  outline: 2px dashed transparent;
-  outline-offset: 5px;
 }
 
 /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */

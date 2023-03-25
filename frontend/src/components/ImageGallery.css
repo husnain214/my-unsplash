@@ -26,7 +26,7 @@ article img {
 
 .image-overlay > * { margin: 1em; }
 
-article:hover .image-overlay {
+article:where(:hover, :focus-visible, :focus-within) .image-overlay {
   visibility: visible;
   opacity: 1;
 }
@@ -37,9 +37,11 @@ article .delete-btn {
   border-radius: 2.375rem;
 }
 
-article .delete-btn:where(:hover, :focus, :focus-visible) {
+article .delete-btn:where(:hover, :focus-visible) {
   background-color: hsl( var(--clr-accent-200) );
   color: hsl( var(--clr-secondary-100) );
+  opacity: 1;
+  outline-color: hsl( var(--clr-accent-200) );
 }
 
 

@@ -1,7 +1,22 @@
+import { useState } from 'react'
+
+import loginService from '../services/loginService'
+
 const LoginForm = () => {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  const handleSubmit = async event => {
+    event.preventDefault()
+
+    const response = await loginService.login({email, password})
+
+    console.log(response)
+  }
+
   return (
-    <>
-      <form action='' className='grid bg-secondary-100'>
+    <section className='form-container grid justify-items-stretch align-content-center'>
+      <form action='' className='grid bg-secondary-100' onSubmit={handleSubmit}>
         <header>
           <p className='text-secondary-300 fs-300 fw-5400'>Welcome back</p>
         </header>
@@ -17,7 +32,8 @@ const LoginForm = () => {
             name='email' 
             id='email' 
             placeholder='email' 
-            className='fs-400 fw-400 text-primary' />
+            onChange={ e => setEmail(e.target.value) }
+            className='input-text | fs-400 fw-400 text-primary' />
         </div>
 
         <div className='input-wrapper grid'>
@@ -29,7 +45,8 @@ const LoginForm = () => {
             id='password' 
             name='password' 
             placeholder='password' 
-            className='fs-400 fw-400 text-primary' />
+            onChange={ e => setPassword(e.target.value) }
+            className='input-text | fs-400 fw-400 text-primary' />
         </div>
 
         <div className='form-features flex justify-content-sb'>
@@ -61,11 +78,11 @@ const LoginForm = () => {
           className='cta-btn bg-primary text-secondary-100 fs-400 fw-400'>Demo</button>
       </form>
 
-      <footer className='text-secondary-200 fs-300 fw-500 flex'>
+      <footer className='text-secondary-200 fs-300 fw-500 flex justify-content-center'>
         Don&apos;t have an account?
         <button type='button' className='text-accent-200 fs-300 fw-400'>Join free today</button>
       </footer>
-    </>
+    </section>
   )
 }
 

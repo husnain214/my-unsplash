@@ -97,18 +97,18 @@
   border: 0;
 }
 
-.bg-primary { background-color: hsl( var(--clr-primary) ); }
+.bg-primary { background-color: hsl( var(--clr-primary) / 1 ); }
 .bg-secondary-100 { background-color: hsl( var(--clr-secondary-100) ); }
-.bg-secondary-200 { background-color: hsl( var(--clr-secondary-200) ); }
-.bg-secondary-300 { background-color: hsl( var(--clr-secondary-300) ); }
+.bg-secondary-200 { background-color: hsl( var(--clr-secondary-200) / 1 ); }
+.bg-secondary-300 { background-color: hsl( var(--clr-secondary-300) / 1 ); }
 .bg-accent-100 { background-color: hsl( var(--clr-accent-100) ); }
 .bg-accent-200 { background-color: hsl( var(--clr-accent-200) ); }
 .bg-accent-300 { background-color: hsl( var(--clr-accent-300) / 1); }
 
-.text-primary { color: hsl( var(--clr-primary) ); }
+.text-primary { color: hsl( var(--clr-primary) / 1 ); }
 .text-secondary-100 { color: hsl( var(--clr-secondary-100) ); }
-.text-secondary-200 { color: hsl( var(--clr-secondary-200) ); }
-.text-secondary-300 { color: hsl( var(--clr-secondary-300) ); }
+.text-secondary-200 { color: hsl( var(--clr-secondary-200) / 1 ); }
+.text-secondary-300 { color: hsl( var(--clr-secondary-300) / 1 ); }
 .text-accent-100 { color: hsl( var(--clr-accent-100) ); }
 .text-accent-200 { color: hsl( var(--clr-accent-200) ); }
 

@@ -23,14 +23,15 @@ beforeEach(async () => {
   await User.deleteMany({})
   
   const passwordHash = await bcrypt.hash('husnain123', 10)
-  const user = new User({ name: 'husnain', username: 'husnaindbs', passwordHash })
+  const user = new User({ name: 'husnain', email: 'husnaindbs@gmail.com', passwordHash })
 
   const savedUser = await user.save()
 
   const loggedUser = await api
     .post('/api/login')
     .send({
-      username: 'husnaindbs', password: 'husnain123'
+      email: 'husnaindbs@gmail.com', 
+      password: 'husnain123'
     })
 
   token = 'Bearer ' + JSON.parse(loggedUser.text).token

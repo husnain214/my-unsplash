@@ -2,3 +2,5 @@
   display: grid;
   gap: 3em;
 }
+
+:focus-visible { outline-color: hsl( var(--clr-accent-300) / .5 ); }

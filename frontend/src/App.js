@@ -1,11 +1,10 @@
 import './design-system.css'
 import './css-reset.css'
-
-import UserPage from './components/UserPage'
+import HomePage from './components/Homepage'
 
 const App = () => {
   return(
-    <UserPage />
+    <HomePage />
   )
 }
 
