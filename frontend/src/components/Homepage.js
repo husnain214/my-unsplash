@@ -1,8 +1,13 @@
+import { useState } from 'react'
+import PropTypes from 'prop-types'
 import parkRainImage from '../images/park-in-rain.jpg'
-import './Homepage.css'
+import './HomePage.css'
 import LoginForm from './LoginForm'
+import SignupForm from './SignupForm'
 
-const HomePage = () => {
+const HomePage = ({ setUser }) => {
+  const [userExists, setUserExists] = useState(true)
+
   return (
     <>
       <main className='grid'>
@@ -15,11 +20,15 @@ const HomePage = () => {
             role='presentation'
           />
         </aside>
-
-        <LoginForm />
+        { userExists && <LoginForm setUserExists = {setUserExists} setUser = {setUser} /> }
+        { !userExists && <SignupForm setUserExists = {setUserExists} /> }
       </main>
     </>
   )
+}
+
+HomePage.propTypes = {
+  setUser: PropTypes.func.isRequired
 }
 
 export default HomePage

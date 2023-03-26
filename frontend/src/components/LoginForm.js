@@ -1,53 +1,59 @@
 import { useState } from 'react'
-
+import PropTypes from 'prop-types'
 import loginService from '../services/loginService'
 
-const LoginForm = () => {
+const LoginForm = ({ setUserExists, setUser }) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const handleSubmit = async event => {
+  const handleLogin = async event => {
     event.preventDefault()
 
-    const response = await loginService.login({email, password})
+    try {
+      const user = await loginService.login({ email, password })
+      localStorage.setItem('UnsplashAppUser', JSON.stringify(user))
 
-    console.log(response)
+      setEmail('')
+      setPassword('')
+      setUser(user)
+    }
+    catch (error) {
+      alert('wrong email or password')
+    }
   }
 
   return (
     <section className='form-container grid justify-items-stretch align-content-center'>
-      <form action='' className='grid bg-secondary-100' onSubmit={handleSubmit}>
+      <form action='' className='grid bg-secondary-100' onSubmit={handleLogin}>
         <header>
           <p className='text-secondary-300 fs-300 fw-5400'>Welcome back</p>
         </header>
 
         <h1 className='fs-700 fw-800 text-primary'>Login to your account</h1>
 
-        <div className='input-wrapper grid'>
-          <label 
-            htmlFor='email' 
-            className='fs-400 fw-500 text-secondary-300'>Email</label>
-          <input 
-            type='email' 
-            name='email' 
-            id='email' 
-            placeholder='email' 
-            onChange={ e => setEmail(e.target.value) }
-            className='input-text | fs-400 fw-400 text-primary' />
-        </div>
+        <label 
+          htmlFor='email' 
+          className='fs-400 fw-500 text-secondary-300'>Email</label>
+        <input 
+          type='email' 
+          name='email' 
+          id='email' 
+          placeholder='email' 
+          onChange={ e => setEmail(e.target.value) }
+          required
+          className='input-text | fs-400 fw-400 text-primary' />
 
-        <div className='input-wrapper grid'>
-          <label 
-            htmlFor='password' 
-            className='fs-400 fw-500 text-secondary-300'>Password</label>
-          <input 
-            type='password' 
-            id='password' 
-            name='password' 
-            placeholder='password' 
-            onChange={ e => setPassword(e.target.value) }
-            className='input-text | fs-400 fw-400 text-primary' />
-        </div>
+        <label 
+          htmlFor='password' 
+          className='fs-400 fw-500 text-secondary-300'>Password</label>
+        <input 
+          type='password' 
+          id='password' 
+          name='password' 
+          placeholder='password' 
+          required
+          onChange={ e => setPassword(e.target.value) }
+          className='input-text | fs-400 fw-400 text-primary' />
 
         <div className='form-features flex justify-content-sb'>
           <div className='remember flex align-items-center'>
@@ -80,10 +86,18 @@ const LoginForm = () => {
 
       <footer className='text-secondary-200 fs-300 fw-500 flex justify-content-center'>
         Don&apos;t have an account?
-        <button type='button' className='text-accent-200 fs-300 fw-400'>Join free today</button>
+        <button 
+          type='button' 
+          onClick = { () => setUserExists(false) }
+          className='text-accent-200 fs-300 fw-400'>Join free today</button>
       </footer>
     </section>
   )
+}
+
+LoginForm.propTypes = {
+  setUserExists: PropTypes.func.isRequired,
+  setUser: PropTypes.func.isRequired
 }
 
 export default LoginForm

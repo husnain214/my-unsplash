@@ -1,10 +1,17 @@
+import PropTypes from 'prop-types'
+
 import logo from '../images/logo.svg'
 import searchIcon from '../images/searchIcon.svg'
 import './Header.css'
 
-const Header = () => {
+const Header = ({ setUser }) => {
+  const handleLogout = () => {
+    localStorage.removeItem('UnsplashAppUser')
+    setUser(null)
+  }
+
   return (
-    <header className='container flex align-items-center' style={{ gap: 0 }}>
+    <header className='container flex align-items-center'>
       <a href='#' className='header-brand flex justify-content-center align-items-center text-primary fw-800'>
         <img 
           src={logo} 
@@ -36,9 +43,20 @@ const Header = () => {
           placeholder='Search by name' />
       </div>
 
-      <button className='add-photo-btn bg-accent-300 fs-300 text-secondary-100'>Add a photo</button>
+      <button 
+        type='button' 
+        className='add-photo-btn bg-accent-300 fs-300 text-secondary-100'>Add a photo</button>
+
+      <button 
+        type='button' 
+        onClick = {handleLogout}
+        className='add-photo-btn bg-primary fs-300 text-secondary-100'>Logout</button>
     </header>
   )
+}
+
+Header.propTypes = {
+  setUser: PropTypes.func.isRequired
 }
 
 export default Header

@@ -2,7 +2,7 @@ import './Modal.css'
 
 const DeleteModal = () => {
   return (
-    <dialog open className='grid'>
+    <dialog className='grid'>
       <h1 className='fs-600 fw-500 text-primary'>Are you sure?</h1>
 
       <form action='' method='dialog' className='grid'>

@@ -1,7 +1,42 @@
-const SignupForm = () => {
+import { useState } from 'react'
+import PropTypes from 'prop-types'
+import userService from '../services/userService'
+
+const SignupForm = ({ setUserExists }) => {
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [confirmedPassword, setConfirmedPassword] = useState('')
+
+  const handleSignup = async event => {
+    event.preventDefault()
+
+    if(password != confirmedPassword) {
+      alert('passwords do not match')
+      return
+    }
+
+    try {
+      await userService.createUser({
+        name,
+        email,
+        password
+      })
+
+      setName('')
+      setEmail('')
+      setPassword('')
+      setConfirmedPassword('')
+      
+      alert('You can login now')
+    } catch (error) {
+      alert('Enter required valid details')
+    }
+  }
+
   return (
     <section className='form-container grid justify-items-stretch align-content-center'>
-      <form action='' className='grid bg-secondary-100'>
+      <form action='' className='grid bg-secondary-100' onSubmit={handleSignup}>
         <header>
           <p className='text-secondary-300 fs-300 fw-5400'>Welcome to My Unsplash</p>
         </header>
@@ -16,6 +51,9 @@ const SignupForm = () => {
           name='name' 
           id='name' 
           placeholder='name' 
+          onChange={ e => setName(e.target.value) }
+          value={name}
+          required
           className='input-text | fs-400 fw-400 text-primary' />
 
         <label 
@@ -26,6 +64,9 @@ const SignupForm = () => {
           name='email' 
           id='email' 
           placeholder='email' 
+          onChange={ e => setEmail(e.target.value) }
+          value={email}
+          required
           className='input-text | fs-400 fw-400 text-primary' />
 
         <label 
@@ -36,6 +77,10 @@ const SignupForm = () => {
           id='password' 
           name='password' 
           placeholder='password' 
+          onChange={ e => setPassword(e.target.value) }
+          value={password}
+          minLength='3'
+          required
           className='input-text | fs-400 fw-400 text-primary' />
 
         <label 
@@ -46,6 +91,10 @@ const SignupForm = () => {
           id='confirm-password' 
           name='confirm-password' 
           placeholder='Confirm your password' 
+          onChange={ e => setConfirmedPassword(e.target.value) }
+          value={confirmedPassword}
+          minLength='3'
+          required
           className='input-text | fs-400 fw-400 text-primary' />
 
         <button 
@@ -57,10 +106,17 @@ const SignupForm = () => {
 
       <footer className='text-secondary-200 fs-300 fw-500 flex justify-content-center'>
         Already have an account?
-        <button type='button' className='text-accent-200 fs-300 fw-400 '>Login</button>
+        <button 
+          type='button' 
+          onClick = { () => setUserExists(true) }
+          className='text-accent-200 fs-300 fw-400 '>Login</button>
       </footer>
     </section>
   )
+}
+
+SignupForm.propTypes = {
+  setUserExists: PropTypes.func.isRequired
 }
 
 export default SignupForm
