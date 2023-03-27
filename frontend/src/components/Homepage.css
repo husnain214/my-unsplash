@@ -41,10 +41,7 @@ aside::before {
   z-index: 1;
 }
 
-form.grid { 
-  border-radius: 5px; 
-  padding: 1em;
-}
+form.grid { padding: 1em; }
 
 form .input-text {
   padding: .5em 1em;
@@ -63,10 +60,7 @@ form input[type='checkbox']:checked {
   accent-color: hsl( var(--clr-accent-200) );
 }
 
-form .cta-btn {
-  padding: .5em 0;
-  border-radius: 5px;
-}
+form .cta-btn { padding: .5em 0; }
 
 footer button, .remember ~ button { border-bottom: 1px solid hsl( var(--clr-accent-200) ); }
 

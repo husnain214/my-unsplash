@@ -24,7 +24,7 @@ const LoginForm = ({ setUserExists, setUser }) => {
 
   return (
     <section className='form-container grid justify-items-stretch align-content-center'>
-      <form action='' className='grid bg-secondary-100' onSubmit={handleLogin}>
+      <form action='' className='grid bg-secondary-100 border-radius-100' onSubmit={handleLogin}>
         <header>
           <p className='text-secondary-300 fs-300 fw-5400'>Welcome back</p>
         </header>
@@ -76,12 +76,12 @@ const LoginForm = ({ setUserExists, setUser }) => {
           type='submit' 
           name='submit-btn' 
           id='submit-btn' 
-          className='cta-btn bg-accent-200 text-secondary-100 fs-400 fw-400'>Login</button>
+          className='cta-btn bg-accent-200 text-secondary-100 fs-400 fw-400 border-radius-100'>Login</button>
         <button 
           type='button' 
           name='demo-btn' 
           id='demo-btn' 
-          className='cta-btn bg-primary text-secondary-100 fs-400 fw-400'>Demo</button>
+          className='cta-btn bg-primary text-secondary-100 fs-400 fw-400 border-radius-100'>Demo</button>
       </form>
 
       <footer className='text-secondary-200 fs-300 fw-500 flex justify-content-center'>

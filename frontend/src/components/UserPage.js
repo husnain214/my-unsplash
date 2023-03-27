@@ -1,3 +1,4 @@
+import { useRef } from 'react'
 import PropTypes from 'prop-types'
 
 import './UserPage.css'
@@ -6,11 +7,27 @@ import ImageGallery from './ImageGallery'
 import AddModal from './AddModal'
 
 const UserPage = ({ setUser }) => {
+  const userPageRef = useRef()
+
+  const openAddPhotoModal = () => {
+    if(!userPageRef.current) return
+
+    userPageRef.current.openDialog()
+  }
+
+  const createImage = () => { console.log('SAY SIKE!') }
+
   return (
     <>
-      <Header setUser = {setUser} />
+      <Header 
+        setUser = {setUser} 
+        openAddPhotoModal = {openAddPhotoModal} 
+      />
       <ImageGallery />
-      <AddModal />
+      <AddModal 
+        ref = {userPageRef} 
+        addImage = {createImage} 
+      />
     </>
   )
 }

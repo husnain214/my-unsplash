@@ -4,10 +4,14 @@ import logo from '../images/logo.svg'
 import searchIcon from '../images/searchIcon.svg'
 import './Header.css'
 
-const Header = ({ setUser }) => {
+const Header = ({ setUser, openAddPhotoModal }) => {
   const handleLogout = () => {
     localStorage.removeItem('UnsplashAppUser')
     setUser(null)
+  }
+
+  const handleAddPhotoOnclick = () => {
+    openAddPhotoModal()
   }
 
   return (
@@ -26,7 +30,7 @@ const Header = ({ setUser }) => {
         </div>
       </a>
 
-      <div className='search-bar flex justify-content-center align-items-center'>
+      <div className='search-bar flex justify-content-center align-items-center border-radius-200'>
         <img 
           src={searchIcon}
           alt='search icon'
@@ -45,18 +49,20 @@ const Header = ({ setUser }) => {
 
       <button 
         type='button' 
-        className='add-photo-btn bg-accent-300 fs-300 text-secondary-100'>Add a photo</button>
+        onClick = {handleAddPhotoOnclick}
+        className='add-photo-btn bg-accent-300 fs-300 text-secondary-100 border-radius-300'>Add a photo</button>
 
       <button 
         type='button' 
         onClick = {handleLogout}
-        className='add-photo-btn bg-primary fs-300 text-secondary-100'>Logout</button>
+        className='add-photo-btn bg-primary fs-300 text-secondary-100 border-radius-300'>Logout</button>
     </header>
   )
 }
 
 Header.propTypes = {
-  setUser: PropTypes.func.isRequired
+  setUser: PropTypes.func.isRequired,
+  openAddPhotoModal: PropTypes.func.isRequired
 }
 
 export default Header
