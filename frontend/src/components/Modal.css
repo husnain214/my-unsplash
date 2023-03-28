@@ -3,21 +3,21 @@
   border: 0;
 }
 
-dialog::backdrop { background-color: hsl(0 0% 0% / 0.25); }
+:modal::backdrop { background-color: hsl(0 0% 0% / 0.25); }
 
-dialog form.grid input {
+:modal form.grid input {
   padding: 1em;
   border: 1px solid hsl(var( --clr-secondary-300 ));
 }
 
-dialog form.grid input:where(:hover, :focus-visible) { 
+:modal form.grid input:where(:hover, :focus-visible) { 
   outline-color: transparent; 
   border-color: hsl(var( --clr-accent-300 ));
 }
 
-dialog form.grid button[type='submit'] {
+:modal form.grid button[type='submit'] {
   padding: .6em 1em;
   box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.1);
 }
 
-dialog form.grid button[type='submit']:focus-visible { outline-color: hsl( var(--clr-accent-300) ); }
+:modal form.grid button[type='submit']:focus-visible { outline-color: hsl( var(--clr-accent-300) ); }

@@ -1,14 +1,25 @@
-const Image = () => {
+import PropTypes from 'prop-types'
+
+const Image = ({ label, url, openDeletePhotoModal }) => {
   return (
     <article tabIndex='0'>
-      <img src='https://images.pexels.com/photos/9902397/pexels-photo-9902397.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' alt='' />
+      <img src={url} alt={label} />
       
       <div className='image-overlay grid align-content-sb'>
-        <button className='delete-btn align-self-start justify-self-end fw-500 text-accent-200 fs-200' type='button'>Delete</button>
-        <p className='image-label align-self-end fw-700 text-secondary-100 fs-500'>aaaaaaaaaaaaaaaaa</p>
+        <button 
+          onClick={openDeletePhotoModal}
+          className='delete-btn align-self-start justify-self-end fw-500 text-accent-200 fs-200' 
+          type='button'>Delete</button>
+        <p className='image-label align-self-end fw-700 text-secondary-100 fs-500'>{label}</p>
       </div>
     </article>
   )
+}
+
+Image.propTypes = {
+  url: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  openDeletePhotoModal: PropTypes.func.isRequired
 }
 
 export default Image

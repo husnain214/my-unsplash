@@ -1,25 +1,28 @@
-import React, { useRef, useImperativeHandle, forwardRef } from 'react'
+import { useState, useRef, useImperativeHandle, forwardRef } from 'react'
 import PropTypes from 'prop-types'
 import './Modal.css'
 
 const AddModal = forwardRef(({ addImage }, ref) => {
   const addModalRef = useRef()
 
+  const [url, setUrl] = useState('')
+  const [label, setLabel] = useState('')
+
   useImperativeHandle(ref, () => ({
     openDialog: () => {
-      if(!addModalRef.current) return
-
       addModalRef.current.showModal()
     }
   }))
 
   const closeDialog = () => {
-    if(!addModalRef.current) return 
     addModalRef.current.close()
   }
 
-  const handleSubmit = () => {
-    addImage()
+  const handleSubmit = async event => {
+    event.preventDefault()
+
+    await addImage({ url, label })
+    closeDialog()
   }
 
   return (
@@ -35,6 +38,9 @@ const AddModal = forwardRef(({ addImage }, ref) => {
           name='img-label' 
           className='fs-300 fw-500 text-secondary-300 border-radius-300' 
           id='img-label' 
+          onChange = { ({ target }) => setLabel(target.value) }
+          value={ label }
+          required
           placeholder='name for the image' />
 
         <label 
@@ -45,6 +51,9 @@ const AddModal = forwardRef(({ addImage }, ref) => {
           name='img-url' 
           id='img-url' 
           className='fs-300 fw-500 text-secondary-300 border-radius-300' 
+          onChange = { ({ target }) => setUrl(target.value) }
+          value={ url }
+          required
           placeholder='image address' />
 
         <div className='form-cta justify-self-end flex'>

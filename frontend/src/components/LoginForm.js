@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import PropTypes from 'prop-types'
 import loginService from '../services/loginService'
+import imageService from '../services/imageService'
 
 const LoginForm = ({ setUserExists, setUser }) => {
   const [email, setEmail] = useState('')
@@ -12,6 +13,7 @@ const LoginForm = ({ setUserExists, setUser }) => {
     try {
       const user = await loginService.login({ email, password })
       localStorage.setItem('UnsplashAppUser', JSON.stringify(user))
+      imageService.setToken(user.token)
 
       setEmail('')
       setPassword('')
