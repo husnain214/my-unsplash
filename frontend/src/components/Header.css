@@ -1,8 +1,14 @@
+.userpage--header.flex { 
+  padding: 1em 0; 
+  flex-wrap: wrap;
+}
+
+.header-brand { margin-right: 1rem; }
+
 .search-bar {
   border: 2px solid hsl( var(--clr-secondary-200) );
   padding: .5em .7em;
   margin-right: auto;
-  margin-left: 2em;
 }
 
 .search-bar input {

@@ -10,7 +10,7 @@ const HomePage = ({ setUser }) => {
 
   return (
     <>
-      <main className='grid'>
+      <main className='homepage grid'>
         <aside>
           <img 
             className='decor-image bg-secondary-300'

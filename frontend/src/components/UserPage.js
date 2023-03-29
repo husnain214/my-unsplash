@@ -1,26 +1,27 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
 import './UserPage.css'
 import Header from './Header'
 import ImageGallery from './ImageGallery'
 import AddModal from './AddModal'
-import DeleteModal from './DeleteModal'
 import imageService from '../services/imageService'
+import loginService from '../services/loginService'
 
 const UserPage = ({ user, setUser }) => {
-  const [images, setImages] = useState(user.images)
-  const refForAddModal = useRef()
-  const refForDeleteModal = useRef()
+  const [images, setImages] = useState([])
 
-  console.log(images)
+  const userPageRef = useRef()
+
+  useEffect( () => {
+    imageService.getImages()
+      .then(responseImages => {
+        setImages(responseImages)
+      })
+  }, [])
 
   const openAddPhotoModal = () => {
-    refForAddModal.current.openDialog()
-  }
-
-  const openDeletePhotoModal = () => {
-    refForDeleteModal.current.openDialog()
+    userPageRef.current.openDialog()
   }
 
   const createImage = async imageData => { 
@@ -29,7 +30,18 @@ const UserPage = ({ user, setUser }) => {
     setImages([...images, responseData])
   }
 
-  const deleteImage = () => { console.log('SAY SIKE AGAIN!')}
+  const deleteImage = async imageId => { 
+    await imageService.deleteImage(imageId)
+  }
+
+  const verifyUser = async password => {
+    try {
+      await loginService.login({ email: user.email, password })
+      return true
+    } catch (error) {
+      return false
+    }
+  }
 
   return (
     <>
@@ -38,16 +50,15 @@ const UserPage = ({ user, setUser }) => {
         openAddPhotoModal = {openAddPhotoModal} 
       />
 
-      <ImageGallery images = {images} openDeletePhotoModal = {openDeletePhotoModal} />
-
-      <AddModal 
-        ref = {refForAddModal} 
-        addImage = {createImage} 
+      <ImageGallery 
+        images = {images} 
+        deleteImage = {deleteImage}
+        verifyUser = {verifyUser}
       />
 
-      <DeleteModal 
-        ref = {refForDeleteModal} 
-        deleteImage = {deleteImage} 
+      <AddModal 
+        ref = {userPageRef} 
+        addImage = {createImage} 
       />
     </>
   )

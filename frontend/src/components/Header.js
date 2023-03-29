@@ -15,8 +15,8 @@ const Header = ({ setUser, openAddPhotoModal }) => {
   }
 
   return (
-    <header className='container flex align-items-center'>
-      <a href='#' className='header-brand flex justify-content-center align-items-center text-primary fw-800'>
+    <header className='userpage--header | container flex'>
+      <a href='\' className='header-brand flex justify-content-center align-items-center text-primary fw-800'>
         <img 
           src={logo} 
           alt='logo' 

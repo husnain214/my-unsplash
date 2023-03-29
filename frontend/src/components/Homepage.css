@@ -2,14 +2,14 @@
   outline-color: hsl( var(--clr-accent-200) );
 }
 
-main.grid {
+.homepage.grid {
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 100dvh;
 }
 
 @media (max-width: 60em) {
-  main.grid { grid-template-rows: auto; gap: 0; }
-  main.grid > * { grid-area: 1 / -1 / 1 / -1; } 
+  .homepage.grid { grid-template-rows: auto; gap: 0; }
+  .homepage.grid > * { grid-area: 1 / -1 / 1 / -1; } 
 
   .form-features { align-items: flex-start; flex-direction: column; }
 }
@@ -41,9 +41,9 @@ aside::before {
   z-index: 1;
 }
 
-form.grid { padding: 1em; }
+.homepage--form.grid { padding: 1em; }
 
-form .input-text {
+.homepage--form .input-text {
   padding: .5em 1em;
   border: 2px solid hsl( var(--clr-secondary-200) );
   outline: transparent;
@@ -51,17 +51,17 @@ form .input-text {
   transition: all 150ms;
 }
 
-form .input-text:where(:hover, :focus-visible) {
+.homepage--form .input-text:where(:hover, :focus-visible) {
   border-color: hsl( var(--clr-primary) );
   outline-color: transparent;
 }
 
-form input[type='checkbox']:checked {
+.homepage--form input[type='checkbox']:checked {
   accent-color: hsl( var(--clr-accent-200) );
 }
 
-form .cta-btn { padding: .5em 0; }
+.homepage--form .cta-btn { padding: .5em 0; }
 
 footer button, .remember ~ button { border-bottom: 1px solid hsl( var(--clr-accent-200) ); }
 
-main button { transition: opacity 150ms; }
+.homepage button { transition: opacity 150ms; }

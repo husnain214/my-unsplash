@@ -64,6 +64,9 @@
 .justify-content-sb { justify-content: space-between; }
 .justify-items-sb { justify-items: space-between; }
 
+.align-content-start { align-content: start; }
+.align-items-start { align-items: start; }
+
 .align-content-sb { align-content: space-between; }
 .align-items-sb { align-items: space-between; }
 
@@ -79,7 +82,6 @@
 .container {
   --maximum-width: 70rem;
 
-  height: 4em;
   width: min( var(--maximum-width) , 100% - 2rem);
   margin-inline: auto;
   background-color: var(--clr-accent-100);

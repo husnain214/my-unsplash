@@ -16,4 +16,21 @@ const createImage = async imageData => {
   return response.data
 }
 
-export default { createImage, setToken }
+const getImages = async () => {
+  const config = {
+    headers: { Authorization: token }
+  }
+
+  const response = await axios.get(baseUrl, config)
+  return response.data
+}
+
+const deleteImage = async id => {
+  const config = {
+    headers: { Authorization: token }
+  }
+
+  return await axios.delete(`${baseUrl}/${id}`, config)
+}
+
+export default { createImage, getImages, deleteImage, setToken }

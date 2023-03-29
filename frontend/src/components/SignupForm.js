@@ -36,7 +36,7 @@ const SignupForm = ({ setUserExists }) => {
 
   return (
     <section className='form-container grid justify-items-stretch align-content-center'>
-      <form action='' className='grid bg-secondary-100 border-radius-100' onSubmit={handleSignup}>
+      <form action='' className='homepage--form | grid bg-secondary-100 border-radius-100' onSubmit={handleSignup}>
         <header>
           <p className='text-secondary-300 fs-300 fw-5400'>Welcome to My Unsplash</p>
         </header>

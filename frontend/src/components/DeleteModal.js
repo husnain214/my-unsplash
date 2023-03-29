@@ -1,9 +1,10 @@
-import { forwardRef, useImperativeHandle, useRef } from 'react'
+import { forwardRef, useImperativeHandle, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 import './Modal.css'
 
-const DeleteModal = forwardRef(({ deleteImage }, ref) => {
+const DeleteModal = forwardRef(({ verifyUser, id, deleteImage }, ref) => {
   const deleteModalRef = useRef()
+  const [password, setPassword] = useState('')
 
   useImperativeHandle(ref, () => ({
     openDialog: () => {      
@@ -15,8 +16,13 @@ const DeleteModal = forwardRef(({ deleteImage }, ref) => {
     deleteModalRef.current.close()
   }
 
-  const handleSubmit = () => {
-    deleteImage()
+  const handleSubmit = async () => {
+    try {
+      await verifyUser(password)
+      await deleteImage(id)
+    } catch (error) {
+      console.log('invalid password')
+    }
   }
 
   return (
@@ -25,7 +31,15 @@ const DeleteModal = forwardRef(({ deleteImage }, ref) => {
         <h1 className='fs-600 fw-500 text-primary'>Are you sure?</h1>
 
         <label htmlFor='password' className='fs-300 fw-500 text-secondary-300'>Password</label>
-        <input type='password' name='password' className='fs-300 fw-500 text-secondary-300 border-radius-300' id='password' placeholder='name for the image' />
+        <input 
+          type='password' 
+          name='password' 
+          className='fs-300 fw-500 text-secondary-300 border-radius-300' 
+          id='password' 
+          minLength='3'
+          onChange={ ({ target }) => { setPassword(target.value) } }
+          value={ password }
+          placeholder='name for the image' />
 
         <div className='form-cta justify-self-end flex'>
           <button 
@@ -45,7 +59,9 @@ const DeleteModal = forwardRef(({ deleteImage }, ref) => {
 DeleteModal.displayName = 'DeleteModal'
 
 DeleteModal.propTypes = {
-  deleteImage: PropTypes.func.isRequired
+  deleteImage: PropTypes.func.isRequired,
+  verifyUser: PropTypes.func.isRequired,
+  id: PropTypes.string.isRequired
 }
 
 export default DeleteModal

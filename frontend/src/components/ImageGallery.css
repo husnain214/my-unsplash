@@ -1,11 +1,17 @@
-main {
-  grid-template-columns: repeat(3, 1fr);
+.image-gallery {
+  --minimum-width: min(20rem, 100%);
+
+  grid-template-columns: repeat(auto-fit, minmax( var(--minimum-width), 1fr));
   font-family: var(--ff-secondary);
+  padding-bottom: 2em;
 }
 
 article { 
   border-radius: 1rem; 
-  position: relative;
+}
+
+article.grid > * { 
+  grid-area: 1 / -1 / 1 / -1;
 }
 
 article > * { border-radius: inherit; }
@@ -17,8 +23,6 @@ article img {
 }
 
 .image-overlay {
-  position: absolute;
-  inset: 0;
   background-color: hsl(0 0% 0% / 0.38);
   visibility: hidden;
   opacity: 0;
@@ -26,7 +30,7 @@ article img {
 
 .image-overlay > * { margin: 1em; }
 
-article:where(:hover, :focus-visible, :focus-within) .image-overlay {
+article:where(:hover, :focus-visible) .image-overlay {
   visibility: visible;
   opacity: 1;
 }

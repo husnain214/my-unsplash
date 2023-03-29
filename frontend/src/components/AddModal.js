@@ -18,11 +18,11 @@ const AddModal = forwardRef(({ addImage }, ref) => {
     addModalRef.current.close()
   }
 
-  const handleSubmit = async event => {
-    event.preventDefault()
-
+  const handleSubmit = async () => {
     await addImage({ url, label })
     closeDialog()
+    setLabel('')
+    setUrl('')
   }
 
   return (
@@ -38,6 +38,7 @@ const AddModal = forwardRef(({ addImage }, ref) => {
           name='img-label' 
           className='fs-300 fw-500 text-secondary-300 border-radius-300' 
           id='img-label' 
+          autoComplete='off'
           onChange = { ({ target }) => setLabel(target.value) }
           value={ label }
           required
@@ -50,6 +51,7 @@ const AddModal = forwardRef(({ addImage }, ref) => {
           type='text' 
           name='img-url' 
           id='img-url' 
+          autoComplete='off'
           className='fs-300 fw-500 text-secondary-300 border-radius-300' 
           onChange = { ({ target }) => setUrl(target.value) }
           value={ url }

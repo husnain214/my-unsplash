@@ -15,14 +15,13 @@ const App = () => {
     if(loggedUserJSON) {
       const loggedUser = JSON.parse(loggedUserJSON)
       setUser(loggedUser)
-      console.log(loggedUser)
       imageService.setToken(loggedUser.token)
     }
   }, [])
   
   return (
     <>
-      { user === null ? <HomePage setUser = {setUser} /> : <UserPage setUser = {setUser} user={user} /> }
+      { user === null ? <HomePage setUser = {setUser} /> : <UserPage user = {user} setUser = {setUser} /> }
     </>
   )
 }
