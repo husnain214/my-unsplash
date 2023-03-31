@@ -41,7 +41,9 @@ const LoginForm = ({ setUserExists, setUser }) => {
           name='email' 
           id='email' 
           placeholder='email' 
-          onChange={ e => setEmail(e.target.value) }
+          onChange={ ({ target }) => setEmail(target.value) }
+          value={ email }
+          autoComplete='off'
           required
           className='input-text | fs-400 fw-400 text-primary' />
 
@@ -54,7 +56,9 @@ const LoginForm = ({ setUserExists, setUser }) => {
           name='password' 
           placeholder='password' 
           required
-          onChange={ e => setPassword(e.target.value) }
+          autoComplete='off'
+          onChange={ ({ target }) => setPassword(target.value) }
+          value={ password }
           className='input-text | fs-400 fw-400 text-primary' />
 
         <div className='form-features flex justify-content-sb'>

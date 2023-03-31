@@ -20,6 +20,7 @@ const DeleteModal = forwardRef(({ verifyUser, id, deleteImage }, ref) => {
     try {
       await verifyUser(password)
       await deleteImage(id)
+      setPassword('')
     } catch (error) {
       console.log('invalid password')
     }

@@ -16,7 +16,7 @@ const ImageGallery = ({ verifyUser, deleteImage, images }) => {
   
   return (
     <>
-      <main className='image-gallery | container grid align-items-start' style={{ gap: '2rem' }}>
+      <main className='image-gallery | container'>
         {
           images.map(image =>
             <Image 

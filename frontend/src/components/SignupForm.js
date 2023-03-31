@@ -51,8 +51,9 @@ const SignupForm = ({ setUserExists }) => {
           name='name' 
           id='name' 
           placeholder='name' 
-          onChange={ e => setName(e.target.value) }
-          value={name}
+          onChange={ ({ target }) => setName(target.value) }
+          value={ name }
+          autoComplete='off'
           required
           className='input-text | fs-400 fw-400 text-primary' />
 
@@ -64,8 +65,9 @@ const SignupForm = ({ setUserExists }) => {
           name='email' 
           id='email' 
           placeholder='email' 
-          onChange={ e => setEmail(e.target.value) }
-          value={email}
+          onChange={ ({ target }) => setEmail(target.value) }
+          value={ email }
+          autoComplete='off'
           required
           className='input-text | fs-400 fw-400 text-primary' />
 
@@ -77,8 +79,9 @@ const SignupForm = ({ setUserExists }) => {
           id='password' 
           name='password' 
           placeholder='password' 
-          onChange={ e => setPassword(e.target.value) }
+          onChange={ ({ target }) => setPassword(target.value) }
           value={password}
+          autoComplete='off'
           minLength='3'
           required
           className='input-text | fs-400 fw-400 text-primary' />
@@ -91,8 +94,9 @@ const SignupForm = ({ setUserExists }) => {
           id='confirm-password' 
           name='confirm-password' 
           placeholder='Confirm your password' 
-          onChange={ e => setConfirmedPassword(e.target.value) }
-          value={confirmedPassword}
+          onChange={ ({ target }) => setConfirmedPassword(target.value) }
+          value={ confirmedPassword }
+          autoComplete='off'
           minLength='3'
           required
           className='input-text | fs-400 fw-400 text-primary' />

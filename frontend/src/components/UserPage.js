@@ -32,6 +32,7 @@ const UserPage = ({ user, setUser }) => {
 
   const deleteImage = async imageId => { 
     await imageService.deleteImage(imageId)
+    setImages(images.filter(image => image.id !== imageId))
   }
 
   const verifyUser = async password => {

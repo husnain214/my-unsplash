@@ -1,17 +1,29 @@
 .image-gallery {
-  --minimum-width: min(20rem, 100%);
-
-  grid-template-columns: repeat(auto-fit, minmax( var(--minimum-width), 1fr));
-  font-family: var(--ff-secondary);
   padding-bottom: 2em;
+  gap: 2rem;
+  break-inside: avoid;
+}
+
+@media (min-width: 30em) {
+  .image-gallery {
+    columns: 2;
+  }
+}
+
+@media (min-width: 50em) {
+  .image-gallery {
+    columns: 3;
+  }
 }
 
 article { 
   border-radius: 1rem; 
+  margin-bottom: 2rem;
 }
 
 article.grid > * { 
   grid-area: 1 / -1 / 1 / -1;
+  transition: all 200ms;
 }
 
 article > * { border-radius: inherit; }

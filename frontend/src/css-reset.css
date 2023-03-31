@@ -84,7 +84,7 @@ button,
 textarea,
 select {
   font: inherit;
-  transition: inherit;
+  transition: all 200ms;
 }
 
 /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
