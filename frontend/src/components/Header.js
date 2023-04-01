@@ -1,10 +1,13 @@
+import { useState } from 'react'
 import PropTypes from 'prop-types'
 
 import logo from '../images/logo.svg'
 import searchIcon from '../images/searchIcon.svg'
 import './Header.css'
 
-const Header = ({ setUser, openAddPhotoModal }) => {
+const Header = ({ searchImages, setUser, openAddPhotoModal }) => {
+  const [searchedText, setSearchedText] = useState('')
+
   const handleLogout = () => {
     localStorage.removeItem('UnsplashAppUser')
     setUser(null)
@@ -12,6 +15,11 @@ const Header = ({ setUser, openAddPhotoModal }) => {
 
   const handleAddPhotoOnclick = () => {
     openAddPhotoModal()
+  }
+
+  const handleOnChange = ({ target }) => {
+    setSearchedText(target.value)
+    searchImages(searchedText)
   }
 
   return (
@@ -43,6 +51,9 @@ const Header = ({ setUser, openAddPhotoModal }) => {
           type='text' 
           name='search-bar'
           id='search-bar'
+          autoComplete='off'
+          value={searchedText}
+          onChange={ handleOnChange }
           className='fs-300 text-primary'
           placeholder='Search by name' />
       </div>
@@ -62,6 +73,7 @@ const Header = ({ setUser, openAddPhotoModal }) => {
 
 Header.propTypes = {
   setUser: PropTypes.func.isRequired,
+  searchImages: PropTypes.func.isRequired,
   openAddPhotoModal: PropTypes.func.isRequired
 }
 

@@ -10,7 +10,12 @@ const Image = ({ image, openDeletePhotoModal, setDeleteImage }) => {
 
   return (
     <article tabIndex='0' className='grid'>
-      <img src={url} alt={label} />
+      <img 
+        src={url} 
+        alt={label}
+        loading='lazy'
+        decoding='async'
+        className='fw-700 text-secondary-100 fs-500' />
       
       <div className='image-overlay grid align-content-sb'>
         <button 

@@ -19,6 +19,9 @@
 article { 
   border-radius: 1rem; 
   margin-bottom: 2rem;
+  background-color: hsl( var(--clr-accent-100) / .5 );
+  min-height: 10em;
+  min-width: 5em;
 }
 
 article.grid > * { 

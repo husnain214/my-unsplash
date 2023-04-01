@@ -7,22 +7,34 @@ import ImageGallery from './ImageGallery'
 import AddModal from './AddModal'
 import imageService from '../services/imageService'
 import loginService from '../services/loginService'
+import LoadingScreen from './LoadingScreen'
 
 const UserPage = ({ user, setUser }) => {
   const [images, setImages] = useState([])
+  const [searchedImages, setSearchedImages] = useState([])
+  const [loaderVisibility, setLoaderVisbility] = useState(true)
 
   const userPageRef = useRef()
+  const _refForLoader = useRef()
 
   useEffect( () => {
     imageService.getImages()
       .then(responseImages => {
         setImages(responseImages)
+        
+        setTimeout(() => {
+          _refForLoader.current.fadeOut()
+        }, 2000)
       })
   }, [])
 
-  const openAddPhotoModal = () => {
-    userPageRef.current.openDialog()
-  }
+  const searchImages = text => {
+    setSearchedImages( 
+      images.filter( image => 
+        image.label.toLowerCase().includes(text)
+      ) 
+    )
+  } 
 
   const createImage = async imageData => { 
     const responseData = await imageService.createImage(imageData)
@@ -44,15 +56,20 @@ const UserPage = ({ user, setUser }) => {
     }
   }
 
+  if(loaderVisibility) {
+    return <LoadingScreen handleAnimationEnd = {() => setLoaderVisbility(false)} ref={_refForLoader} />
+  }
+
   return (
     <>
       <Header 
         setUser = {setUser} 
-        openAddPhotoModal = {openAddPhotoModal} 
+        searchImages = {searchImages}
+        openAddPhotoModal = {() => userPageRef.current.openDialog()} 
       />
 
       <ImageGallery 
-        images = {images} 
+        images = {searchedImages.length === 0 ? images : searchedImages} 
         deleteImage = {deleteImage}
         verifyUser = {verifyUser}
       />

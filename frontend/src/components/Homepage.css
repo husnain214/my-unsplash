@@ -51,7 +51,7 @@ aside::before {
   transition: all 150ms;
 }
 
-.homepage--form .input-text:where(:hover, :focus-visible) {
+.homepage--form .input-text:focus-visible {
   border-color: hsl( var(--clr-primary) );
   outline-color: transparent;
 }
