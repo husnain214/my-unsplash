@@ -112,7 +112,10 @@ const SignupForm = ({ setUserExists }) => {
         Already have an account?
         <button 
           type='button' 
-          onClick = { () => setUserExists(true) }
+          onClick = { () => {
+            setUserExists(true)
+            window.scrollTo(0, 0)
+          } }
           className='text-accent-200 fs-300 fw-400 '>Login</button>
       </footer>
     </section>

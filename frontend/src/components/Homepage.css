@@ -8,8 +8,16 @@
 }
 
 @media (max-width: 60em) {
-  .homepage.grid { grid-template-rows: auto; gap: 0; }
+  .homepage.grid { 
+    grid-template-rows: auto; 
+    gap: 0;
+  }
+
   .homepage.grid > * { grid-area: 1 / -1 / 1 / -1; } 
+
+  .homepage--form.grid { gap: 1.3rem; }
+
+  .form-container.grid { gap: 1rem; }
 
   .form-features { align-items: flex-start; flex-direction: column; }
 }
@@ -39,9 +47,10 @@ aside::before {
   width: min(30rem, 100% - 2rem);
   margin-inline: auto; 
   z-index: 1;
+  gap: 0;
 }
 
-.homepage--form.grid { padding: 1em; }
+.homepage--form.grid { padding: 2em; }
 
 .homepage--form .input-text {
   padding: .5em 1em;
