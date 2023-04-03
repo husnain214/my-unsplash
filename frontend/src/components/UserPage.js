@@ -38,8 +38,7 @@ const UserPage = ({ user, setUser }) => {
 
   const createImage = async imageData => { 
     const responseData = await imageService.createImage(imageData)
-
-    setImages([...images, responseData])
+    setImages([responseData, ...images])
   }
 
   const deleteImage = async imageId => { 
@@ -57,7 +56,7 @@ const UserPage = ({ user, setUser }) => {
   }
 
   if(loaderVisibility) {
-    return <LoadingScreen handleAnimationEnd = {() => setLoaderVisbility(false)} ref={_refForLoader} />
+    return <LoadingScreen ref={_refForLoader} handleAnimationEnd = {() => setLoaderVisbility(false)} />
   }
 
   return (

@@ -2,12 +2,10 @@ const mongoose = require('mongoose')
 
 const imageSchema = new mongoose.Schema({
   label: {
-    required: true,
     type: String
   },
   url: {
     required: true,
-    unique: true,
     type: String
   },
   user: 

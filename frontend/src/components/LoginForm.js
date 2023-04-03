@@ -7,9 +7,7 @@ const LoginForm = ({ setUserExists, setUser }) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const handleLogin = async event => {
-    event.preventDefault()
-
+  const accountLogin = async ({ email, password }) => {
     try {
       const user = await loginService.login({ email, password })
       localStorage.setItem('UnsplashAppUser', JSON.stringify(user))
@@ -24,9 +22,22 @@ const LoginForm = ({ setUserExists, setUser }) => {
     }
   }
 
+  const handleLogin = async event => {
+    event.preventDefault()
+    await accountLogin({ email, password })
+  }
+
+  const demoLogin = async () => {
+    await accountLogin({ email: 'demo@demo.com', password: 'demo'})
+  }
+
   return (
     <section className='form-container grid justify-items-stretch align-content-center'>
-      <form action='' className='homepage--form | grid bg-secondary-100 border-radius-100' onSubmit={handleLogin}>
+      <form 
+        action='' 
+        method='POST' 
+        onSubmit={handleLogin}
+        className='homepage--form | grid bg-secondary-100 border-radius-100'>
         <header>
           <p className='text-secondary-300 fs-300 fw-5400'>Welcome back</p>
         </header>
@@ -87,6 +98,7 @@ const LoginForm = ({ setUserExists, setUser }) => {
           type='button' 
           name='demo-btn' 
           id='demo-btn' 
+          onClick={demoLogin}
           className='cta-btn bg-primary text-secondary-100 fs-400 fw-400 border-radius-100'>Demo</button>
       </form>
 

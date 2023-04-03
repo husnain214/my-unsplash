@@ -10,7 +10,7 @@
   border: 1px solid hsl(var( --clr-secondary-300 ));
 }
 
-:modal form.grid input:where(:hover, :focus-visible) { 
+:modal form.grid input:focus-visible { 
   outline-color: transparent; 
   border-color: hsl(var( --clr-accent-300 ));
 }
