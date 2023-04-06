@@ -9,11 +9,40 @@ const DeleteModal = forwardRef(({ verifyUser, id, deleteImage }, ref) => {
   useImperativeHandle(ref, () => ({
     openDialog: () => {      
       deleteModalRef.current.showModal()
+      deleteModalRef.current.animate(
+        [
+          { transform: 'translateY(20px)', 
+            opacity: '0' 
+          },
+          { transform: 'translateY(0px)', 
+            opacity: '1' 
+          },
+        ],
+        {
+          duration: 100,
+          iterations: 1,
+        }
+      )
     }
   }))
 
   const closeDialog = () => {
-    deleteModalRef.current.close()
+    deleteModalRef.current.animate(
+      [
+        { transform: 'translateY(0px)', 
+          opacity: '1' 
+        },
+        { transform: 'translateY(20px)', 
+          opacity: '0' 
+        },
+      ],
+      {
+        duration: 100,
+        iterations: 1,
+      }
+    )
+
+    setTimeout(() => deleteModalRef.current.close(), 100)
   }
 
   const handleSubmit = async () => {
@@ -40,7 +69,7 @@ const DeleteModal = forwardRef(({ verifyUser, id, deleteImage }, ref) => {
           minLength='3'
           onChange={ ({ target }) => { setPassword(target.value) } }
           value={ password }
-          placeholder='name for the image' />
+          placeholder='enter your password' />
 
         <div className='form-cta justify-self-end flex'>
           <button 

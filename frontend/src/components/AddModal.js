@@ -11,11 +11,40 @@ const AddModal = forwardRef(({ addImage }, ref) => {
   useImperativeHandle(ref, () => ({
     openDialog: () => {
       addModalRef.current.showModal()
+      addModalRef.current.animate(
+        [
+          { transform: 'translateY(20px)', 
+            opacity: '0' 
+          },
+          { transform: 'translateY(0px)', 
+            opacity: '1' 
+          },
+        ],
+        {
+          duration: 100,
+          iterations: 1,
+        }
+      )
     }
   }))
 
   const closeDialog = () => {
-    addModalRef.current.close()
+    addModalRef.current.animate(
+      [
+        { transform: 'translateY(0px)', 
+          opacity: '1' 
+        },
+        { transform: 'translateY(20px)', 
+          opacity: '0' 
+        },
+      ],
+      {
+        duration: 100,
+        iterations: 1,
+      }
+    )
+
+    setTimeout(() => addModalRef.current.close(), 100)
   }
 
   const handleSubmit = async () => {
