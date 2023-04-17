@@ -9,7 +9,7 @@ const Image = ({ image, openDeletePhotoModal, setDeleteImage }) => {
   }
 
   return (
-    <article tabIndex='0' className='grid'>
+    <article className='grid'>
       <img 
         src={url} 
         alt={label}
