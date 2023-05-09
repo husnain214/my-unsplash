@@ -1,34 +1,23 @@
 import { useState } from 'react'
 import PropTypes from 'prop-types'
-import loginService from '../services/loginService'
-import imageService from '../services/imageService'
 
-const LoginForm = ({ setUserExists, setUser }) => {
+const LoginForm = ({ login, setUserExists }) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const accountLogin = async ({ email, password }) => {
-    try {
-      const user = await loginService.login({ email, password })
-      localStorage.setItem('UnsplashAppUser', JSON.stringify(user))
-      imageService.setToken(user.token)
-
-      setEmail('')
-      setPassword('')
-      setUser(user)
-    }
-    catch (error) {
-      alert('wrong email or password')
-    }
-  }
-
   const handleLogin = async event => {
     event.preventDefault()
-    await accountLogin({ email, password })
+    await login({ email, password })
+
+    setEmail('')
+    setPassword('')
   }
 
   const demoLogin = async () => {
-    await accountLogin({ email: 'demo@demo.com', password: 'demo'})
+    await login({ email: 'demo@demo.com', password: 'demo'})
+    
+    setEmail('')
+    setPassword('')
   }
 
   return (
@@ -105,7 +94,6 @@ const LoginForm = ({ setUserExists, setUser }) => {
       <footer className='text-secondary-200 fs-300 fw-500 flex justify-content-center'>
         Don&apos;t have an account?
         <button 
-          type='button' 
           onClick = { () => setUserExists(false) }
           className='text-accent-200 fs-300 fw-400'>Join free today</button>
       </footer>
@@ -114,8 +102,8 @@ const LoginForm = ({ setUserExists, setUser }) => {
 }
 
 LoginForm.propTypes = {
-  setUserExists: PropTypes.func.isRequired,
-  setUser: PropTypes.func.isRequired
+  login: PropTypes.func.isRequired,
+  setUserExists: PropTypes.func.isRequired
 }
 
 export default LoginForm

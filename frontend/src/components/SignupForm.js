@@ -1,8 +1,7 @@
 import { useState } from 'react'
 import PropTypes from 'prop-types'
-import userService from '../services/userService'
 
-const SignupForm = ({ setUserExists }) => {
+const SignupForm = ({ signup, setUserExists }) => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -16,22 +15,16 @@ const SignupForm = ({ setUserExists }) => {
       return
     }
 
-    try {
-      await userService.createUser({
-        name,
-        email,
-        password
-      })
+    await signup({
+      name,
+      email,
+      password
+    })
 
-      setName('')
-      setEmail('')
-      setPassword('')
-      setConfirmedPassword('')
-      
-      alert('You can login now')
-    } catch (error) {
-      alert('Enter required valid details')
-    }
+    setName('')
+    setEmail('')
+    setPassword('')
+    setConfirmedPassword('')
   }
 
   return (
@@ -111,11 +104,7 @@ const SignupForm = ({ setUserExists }) => {
       <footer className='text-secondary-200 fs-300 fw-500 flex justify-content-center'>
         Already have an account?
         <button 
-          type='button' 
-          onClick = { () => {
-            setUserExists(true)
-            window.scrollTo(0, 0)
-          } }
+          onClick={ () => setUserExists(true) }
           className='text-accent-200 fs-300 fw-400 '>Login</button>
       </footer>
     </section>
@@ -123,6 +112,7 @@ const SignupForm = ({ setUserExists }) => {
 }
 
 SignupForm.propTypes = {
+  signup: PropTypes.func.isRequired,
   setUserExists: PropTypes.func.isRequired
 }
 
