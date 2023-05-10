@@ -69,12 +69,19 @@ aside::before {
   outline-color: transparent;
 }
 
-.homepage--form input[type='checkbox']:checked {
-  accent-color: hsl( var(--clr-accent-200) );
+.homepage--form .cta-btn { 
+  padding: .5em 0; 
+  position: relative;
+  overflow: hidden;
 }
 
-.homepage--form .cta-btn { padding: .5em 0; }
+.homepage--form .cta-btn[data-submitting='true']::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: hsl( var(--clr-accent-100) / .4 );
+}
 
-footer button, .remember ~ button { border-bottom: 1px solid hsl( var(--clr-accent-200) ); }
+footer button { border-bottom: 1px solid hsl( var(--clr-accent-200) ); }
 
 .homepage button { transition: opacity 150ms; }

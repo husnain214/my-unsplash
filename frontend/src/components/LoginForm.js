@@ -7,15 +7,18 @@ const LoginForm = ({ login, setUserExists }) => {
 
   const handleLogin = async event => {
     event.preventDefault()
+    const submitBtn = event.target.querySelector('button[type="submit"]')
+    submitBtn.setAttribute('data-submitting', true)
     await login({ email, password })
-
+    submitBtn.setAttribute('data-submitting', false)
     setEmail('')
     setPassword('')
   }
 
-  const demoLogin = async () => {
+  const demoLogin = async ({ target }) => {
+    target.setAttribute('data-submitting', true)
     await login({ email: 'demo@demo.com', password: 'demo'})
-    
+    target.setAttribute('data-submitting', false)
     setEmail('')
     setPassword('')
   }
@@ -61,32 +64,17 @@ const LoginForm = ({ login, setUserExists }) => {
           value={ password }
           className='input-text | fs-400 fw-400 text-primary' />
 
-        <div className='form-features flex justify-content-sb'>
-          <div className='remember flex align-items-center'>
-            <input 
-              type='checkbox' 
-              className='remember-me' 
-              id='remember-me' 
-              name='remember-me' />
-            <label 
-              htmlFor='remember-me' 
-              className='fs-300 fw-300 text-primary'>Remember me</label>
-          </div>
-
-          <button 
-            type='button'
-            className='fw-300 fs-300 text-accent-200'>Forgot password?</button>
-        </div>
-
         <button 
           type='submit' 
           name='submit-btn' 
           id='submit-btn' 
+          data-submitting='false'
           className='cta-btn bg-accent-200 text-secondary-100 fs-400 fw-400 border-radius-100'>Login</button>
         <button 
           type='button' 
           name='demo-btn' 
           id='demo-btn' 
+          data-submitting='false'
           onClick={demoLogin}
           className='cta-btn bg-primary text-secondary-100 fs-400 fw-400 border-radius-100'>Demo</button>
       </form>
