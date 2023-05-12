@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
 
 import logo from '../images/logo.svg'
 import searchIcon from '../images/searchIcon.svg'
@@ -25,7 +24,7 @@ const Header = ({ searchImages, setUser, openAddPhotoModal }) => {
 
   return (
     <header className='userpage--header | container flex'>
-      <Link to='/' className='header-brand flex justify-content-center align-items-center text-primary fw-800'>
+      <div className='header-brand flex justify-content-center align-items-center text-primary fw-800'>
         <img 
           src={logo} 
           alt='logo' 
@@ -37,7 +36,7 @@ const Header = ({ searchImages, setUser, openAddPhotoModal }) => {
           <span className='brand-title fs-300'>My Unplash</span>
           <span className='brand-subtitle fs-100'>devchallenges.io</span>
         </div>
-      </Link>
+      </div>
 
       <div className='search-bar flex justify-content-center align-items-center border-radius-200'>
         <img 

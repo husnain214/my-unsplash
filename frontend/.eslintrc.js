@@ -20,7 +20,8 @@ module.exports = {
     'sourceType': 'module'
   },
   'plugins': [
-    'react'
+    'react',
+    'jest'
   ],
   'rules': {
     'react/jsx-uses-react': 'error',   
